@@ -214,14 +214,19 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
       return;
     }
 
-    // Only apply hover effect to cover and back cover
-    const emissiveIntensity = (highlighted && (number === 0 || number === pages.length - 1)) ? 0.22 : 0;
-    skinnedMeshRef.current.material[4].emissiveIntensity =
-      skinnedMeshRef.current.material[5].emissiveIntensity = MathUtils.lerp(
-        skinnedMeshRef.current.material[4].emissiveIntensity,
-        emissiveIntensity,
-        0.1
-      );
+    // Only apply hover effect to front of front cover and back of back cover
+    const frontEmissiveIntensity = (highlighted && number === 0) ? 0.22 : 0;
+    const backEmissiveIntensity = (highlighted && number === pages.length - 1) ? 0.22 : 0;
+    skinnedMeshRef.current.material[4].emissiveIntensity = MathUtils.lerp(
+      skinnedMeshRef.current.material[4].emissiveIntensity,
+      frontEmissiveIntensity,
+      0.1
+    );
+    skinnedMeshRef.current.material[5].emissiveIntensity = MathUtils.lerp(
+      skinnedMeshRef.current.material[5].emissiveIntensity,
+      backEmissiveIntensity,
+      0.1
+    );
 
     if (lastOpened.current !== opened) {
       turnedAt.current = +new Date();
@@ -232,7 +237,7 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
 
     let targetRotation = opened ? -Math.PI / 2 : Math.PI / 2;
     if (!bookClosed) {
-      targetRotation += degToRad(number * 0.8);
+      targetRotation += degToRad(number * 0.6);
     }
 
     const bones = skinnedMeshRef.current.skeleton.bones;

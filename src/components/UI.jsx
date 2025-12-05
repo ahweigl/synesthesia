@@ -28,7 +28,7 @@ export const pages = [
   },
   {
     front: "Prelude-2",
-    back: "blank",
+    back: "title-1",
   },
   {
     front: "Poem-3-1",
@@ -36,7 +36,7 @@ export const pages = [
   },
   {
     front: "Poem-3-2",
-    back: "blank",
+    back: "title-2",
   },
   {
     front: "Poem-1-1",
@@ -44,6 +44,10 @@ export const pages = [
   },
   {
     front: "Poem-1-2",
+    back: "title-3",
+  },
+  {
+    front: "Poem-2-3",
     back: "Poem-2-1",
   },
   {
@@ -95,24 +99,42 @@ export const UI = () => {
     <>
       <main className=" pointer-events-none select-none z-10 fixed  inset-0  flex justify-between flex-col">
         <div className="pointer-events-auto mt-10 ml-10 mr-10 flex items-center justify-between">
-          <div className="font-italiana text-black text-4xl leading-tight" style={{ fontFamily: '"Italiana", serif', fontWeight: 500 }}>
+          <div className="font-italiana text-black text-4xl leading-tight" style={{ fontFamily: '"Italiana", serif', fontWeight: 600 }}>
             Angela Weigl
           </div>
-          <button
-            onClick={() => setShowInstructions(true)}
-            className="w-6 h-6 rounded-full border border-black/30 bg-[#faf8f3]/80 hover:bg-[#faf8f3]/90 flex items-center justify-center text-black/70 hover:text-black transition-all duration-200 grainy-button"
-            aria-label="Show instructions"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/Synesthesia A Poetric Triptych - Angela Weigl Found Poetry Folio.pdf';
+                link.download = 'Synesthesia A Poetric Triptych - Angela Weigl Found Poetry Folio.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+              className="w-8 h-8 rounded-full bg-[#faf8f3]/80 hover:bg-[#faf8f3]/90 flex items-center justify-center text-black/70 hover:text-black hover:scale-110 transition-all duration-200 grainy-button"
+              aria-label="Download PDF"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setShowInstructions(true)}
+              className="w-8 h-8 rounded-full bg-[#faf8f3]/80 hover:bg-[#faf8f3]/90 flex items-center justify-center text-black/70 hover:text-black hover:scale-110 transition-all duration-200 grainy-button"
+              aria-label="Show instructions"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </button>
+          </div>
         </div>
         <div className="w-full overflow-auto pointer-events-auto flex justify-center">
           <div className="overflow-auto flex items-center gap-4 max-w-full p-10">
             {/* Front Cover */}
             <button
-              className={`grainy-button font-garamond border-black/30 hover:border-black/50 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${0 === page
+              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${0 === page
                 ? "bg-black/85 text-white"
                 : "bg-[#faf8f3]/80 text-black/80 hover:bg-[#faf8f3]/90 backdrop-blur-sm"
                 }`}
@@ -123,7 +145,7 @@ export const UI = () => {
             </button>
             {/* Page 1 */}
             <button
-              className={`grainy-button font-garamond border-black/30 hover:border-black/50 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${1 === page
+              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${1 === page
                 ? "bg-black/85 text-white"
                 : "bg-[#faf8f3]/80 text-black/80 hover:bg-[#faf8f3]/90 backdrop-blur-sm"
                 }`}
@@ -134,7 +156,7 @@ export const UI = () => {
             </button>
             {/* Page 2 */}
             <button
-              className={`grainy-button font-garamond border-black/30 hover:border-black/50 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${2 === page
+              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${2 === page
                 ? "bg-black/85 text-white"
                 : "bg-[#faf8f3]/80 text-black/80 hover:bg-[#faf8f3]/90 backdrop-blur-sm"
                 }`}
@@ -145,7 +167,7 @@ export const UI = () => {
             </button>
             {/* Page 4 */}
             <button
-              className={`grainy-button font-garamond border-black/30 hover:border-black/50 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${4 === page
+              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${4 === page
                 ? "bg-black/85 text-white"
                 : "bg-[#faf8f3]/80 text-black/80 hover:bg-[#faf8f3]/90 backdrop-blur-sm"
                 }`}
@@ -156,7 +178,7 @@ export const UI = () => {
             </button>
             {/* Page 6 */}
             <button
-              className={`grainy-button font-garamond border-black/30 hover:border-black/50 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${6 === page
+              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${6 === page
                 ? "bg-black/85 text-white"
                 : "bg-[#faf8f3]/80 text-black/80 hover:bg-[#faf8f3]/90 backdrop-blur-sm"
                 }`}
@@ -167,7 +189,7 @@ export const UI = () => {
             </button>
             {/* Back Cover */}
             <button
-              className={`grainy-button font-garamond border-black/30 hover:border-black/50 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${page === pages.length
+              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${page === pages.length
                 ? "bg-black/85 text-white"
                 : "bg-[#faf8f3]/80 text-black/80 hover:bg-[#faf8f3]/90 backdrop-blur-sm"
                 }`}
