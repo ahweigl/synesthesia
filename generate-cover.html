@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #faf8f3;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="1280" height="1710"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set background
+        ctx.fillStyle = '#faf8f3';
+        ctx.fillRect(0, 0, 1280, 1710);
+
+        // Set font
+        ctx.font = '700 120px Italiana, serif';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+
+        // Draw repeated "Angela Weigl" text
+        const text = 'Angela Weigl';
+        const positions = [
+            { x: 50, y: 150, rot: -2 },
+            { x: 450, y: 150, rot: 1 },
+            { x: 850, y: 150, rot: -1 },
+            { x: 250, y: 350, rot: 1.5 },
+            { x: 650, y: 350, rot: -1.5 },
+            { x: 1050, y: 350, rot: 0.5 },
+            { x: 50, y: 550, rot: -0.5 },
+            { x: 450, y: 550, rot: 2 },
+            { x: 850, y: 550, rot: -1 },
+            { x: 250, y: 750, rot: 1 },
+            { x: 650, y: 750, rot: -2 },
+            { x: 1050, y: 750, rot: 0.5 },
+            { x: 50, y: 950, rot: -1.5 },
+            { x: 450, y: 950, rot: 1 },
+            { x: 850, y: 950, rot: -0.5 },
+            { x: 250, y: 1150, rot: 0.5 },
+            { x: 650, y: 1150, rot: -1 },
+            { x: 1050, y: 1150, rot: 1.5 },
+            { x: 50, y: 1350, rot: -2 },
+            { x: 450, y: 1350, rot: 1 },
+            { x: 850, y: 1350, rot: -1 },
+            { x: 250, y: 1550, rot: 1.5 },
+            { x: 650, y: 1550, rot: -1.5 },
+            { x: 1050, y: 1550, rot: 0.5 },
+        ];
+
+        positions.forEach(pos => {
+            ctx.save();
+            ctx.translate(pos.x, pos.y);
+            ctx.rotate(pos.rot * Math.PI / 180);
+            ctx.fillText(text, 0, 0);
+            ctx.restore();
+        });
+
+        // Download as PNG when ready
+        setTimeout(() => {
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'book-cover.png';
+                a.click();
+                console.log('PNG generated! Check your downloads folder.');
+            }, 'image/png');
+        }, 1000);
+    </script>
+</body>
+
+</html>

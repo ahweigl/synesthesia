@@ -12,15 +12,16 @@ export const Experience = () => {
         <Book />
       </Float>
       <OrbitControls />
-      <Environment preset="studio"></Environment>
+      <Environment preset="sunset" intensity={0.3}></Environment>
       <directionalLight
         position={[2, 5, 2]}
-        intensity={2.5}
+        intensity={1.0}
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
         shadow-bias={-0.0001}
       />
+      <ambientLight intensity={0.4} />
       <mesh position-y={-1.5} rotation-x={-Math.PI / 2} receiveShadow>
         <planeGeometry args={[100, 100]} />
         <shadowMaterial transparent opacity={0.2} />

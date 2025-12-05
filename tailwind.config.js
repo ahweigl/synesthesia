@@ -6,6 +6,9 @@ export default {
       sans: ["Poppins", "sans-serif"],
     },
     extend: {
+      fontFamily: {
+        italiana: ["Italiana", "serif"],
+      },
       fontSize: {
         "10xl": "10rem",
         "11xl": "11rem",

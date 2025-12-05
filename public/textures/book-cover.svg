@@ -1,0 +1,58 @@
+<svg width="1280" height="1710" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+      .text-pattern {
+        font-family: 'Italiana', serif;
+        font-size: 120px;
+        font-weight: 700;
+        fill: rgba(0, 0, 0, 0.15);
+      }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#faf8f3"/>
+  
+  <!-- Repeated "Angela Weigl" pattern -->
+  <g class="text-pattern">
+    <!-- Row 1 -->
+    <text x="50" y="150" transform="rotate(-2, 50, 150)">Angela Weigl</text>
+    <text x="450" y="150" transform="rotate(1, 450, 150)">Angela Weigl</text>
+    <text x="850" y="150" transform="rotate(-1, 850, 150)">Angela Weigl</text>
+    
+    <!-- Row 2 -->
+    <text x="250" y="350" transform="rotate(1.5, 250, 350)">Angela Weigl</text>
+    <text x="650" y="350" transform="rotate(-1.5, 650, 350)">Angela Weigl</text>
+    <text x="1050" y="350" transform="rotate(0.5, 1050, 350)">Angela Weigl</text>
+    
+    <!-- Row 3 -->
+    <text x="50" y="550" transform="rotate(-0.5, 50, 550)">Angela Weigl</text>
+    <text x="450" y="550" transform="rotate(2, 450, 550)">Angela Weigl</text>
+    <text x="850" y="550" transform="rotate(-1, 850, 550)">Angela Weigl</text>
+    
+    <!-- Row 4 -->
+    <text x="250" y="750" transform="rotate(1, 250, 750)">Angela Weigl</text>
+    <text x="650" y="750" transform="rotate(-2, 650, 750)">Angela Weigl</text>
+    <text x="1050" y="750" transform="rotate(0.5, 1050, 750)">Angela Weigl</text>
+    
+    <!-- Row 5 -->
+    <text x="50" y="950" transform="rotate(-1.5, 50, 950)">Angela Weigl</text>
+    <text x="450" y="950" transform="rotate(1, 450, 950)">Angela Weigl</text>
+    <text x="850" y="950" transform="rotate(-0.5, 850, 950)">Angela Weigl</text>
+    
+    <!-- Row 6 -->
+    <text x="250" y="1150" transform="rotate(0.5, 250, 1150)">Angela Weigl</text>
+    <text x="650" y="1150" transform="rotate(-1, 650, 1150)">Angela Weigl</text>
+    <text x="1050" y="1150" transform="rotate(1.5, 1050, 1150)">Angela Weigl</text>
+    
+    <!-- Row 7 -->
+    <text x="50" y="1350" transform="rotate(-2, 50, 1350)">Angela Weigl</text>
+    <text x="450" y="1350" transform="rotate(1, 450, 1350)">Angela Weigl</text>
+    <text x="850" y="1350" transform="rotate(-1, 850, 1350)">Angela Weigl</text>
+    
+    <!-- Row 8 -->
+    <text x="250" y="1550" transform="rotate(1.5, 250, 1550)">Angela Weigl</text>
+    <text x="650" y="1550" transform="rotate(-1.5, 650, 1550)">Angela Weigl</text>
+    <text x="1050" y="1550" transform="rotate(0.5, 1050, 1550)">Angela Weigl</text>
+  </g>
+</svg>
+

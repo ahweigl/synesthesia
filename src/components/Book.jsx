@@ -86,20 +86,67 @@ const pageMaterials = [
 ];
 
 pages.forEach((page) => {
-  useTexture.preload(`/textures/${page.front}.jpg`);
-  useTexture.preload(`/textures/${page.back}.jpg`);
+  if (page.front !== "blank") {
+    useTexture.preload(`/textures/${page.front}.jpg`);
+  }
+  if (page.back !== "blank") {
+    useTexture.preload(`/textures/${page.back}.jpg`);
+  }
   useTexture.preload(`/textures/book-cover-roughness.jpg`);
 });
 
 const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
-  const [picture, picture2, pictureRoughness] = useTexture([
-    `/textures/${front}.jpg`,
-    `/textures/${back}.jpg`,
-    ...(number === 0 || number === pages.length - 1
-      ? [`/textures/book-cover-roughness.jpg`]
-      : []),
-  ]);
-  picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
+  const textureUrls = [];
+  if (front !== "blank") textureUrls.push(`/textures/${front}.jpg`);
+  if (back !== "blank") textureUrls.push(`/textures/${back}.jpg`);
+  if (number === 0 || number === pages.length - 1) {
+    textureUrls.push(`/textures/book-cover-roughness.jpg`);
+  }
+
+  const textures = useTexture(textureUrls);
+
+  let picture = null;
+  let picture2 = null;
+  let pictureRoughness = null;
+
+  let textureIndex = 0;
+  if (front !== "blank") {
+    picture = textures[textureIndex++];
+    picture.colorSpace = SRGBColorSpace;
+    picture.center.set(0.5, 0.5);
+    // Move cover picture up by adjusting offset
+    if (number === 0 && front === "book-cover") {
+      picture.offset.y = -0.05; // Move texture up (negative Y offset moves texture up)
+    }
+    // Rotate textures as needed
+    if (front === "Poem-3-3") {
+      picture.rotation = Math.PI / 2; // 90 degrees clockwise
+    } else if (front === "Poem-2-1") {
+      picture.rotation = Math.PI / 2; // 90 degrees clockwise
+    } else if (front === "Poem-2-2") {
+      picture.rotation = -Math.PI / 2; // 90 degrees counterclockwise
+    }
+  }
+  if (back !== "blank") {
+    picture2 = textures[textureIndex++];
+    picture2.colorSpace = SRGBColorSpace;
+    picture2.center.set(0.5, 0.5);
+    // Move back cover picture up by adjusting offset
+    if (number === pages.length - 1 && back === "book-back") {
+      picture2.offset.y = -0.05; // Move texture up (negative Y offset moves texture up)
+    }
+    // Rotate textures as needed
+    if (back === "Poem-3-3") {
+      picture2.rotation = Math.PI / 2; // 90 degrees clockwise
+    } else if (back === "Poem-2-1") {
+      picture2.rotation = Math.PI / 2; // 90 degrees clockwise
+    } else if (back === "Poem-2-2") {
+      picture2.rotation = -Math.PI / 2; // 90 degrees counterclockwise
+    }
+  }
+  if (number === 0 || number === pages.length - 1) {
+    pictureRoughness = textures[textureIndex];
+  }
   const group = useRef();
   const turnedAt = useRef(0);
   const lastOpened = useRef(opened);
@@ -125,28 +172,28 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
     const materials = [
       ...pageMaterials,
       new MeshStandardMaterial({
-        color: whiteColor,
-        map: picture,
+        color: front === "blank" ? new Color("#faf8f3") : (picture ? new Color(0.9, 0.9, 0.9) : whiteColor),
+        ...(picture ? { map: picture } : {}),
         ...(number === 0
           ? {
-              roughnessMap: pictureRoughness,
-            }
+            roughnessMap: pictureRoughness,
+          }
           : {
-              roughness: 0.1,
-            }),
+            roughness: 1,
+          }),
         emissive: emissiveColor,
         emissiveIntensity: 0,
       }),
       new MeshStandardMaterial({
-        color: whiteColor,
-        map: picture2,
+        color: back === "blank" ? new Color("#faf8f3") : (picture2 ? new Color(0.9, 0.9, 0.9) : whiteColor),
+        ...(picture2 ? { map: picture2 } : {}),
         ...(number === pages.length - 1
           ? {
-              roughnessMap: pictureRoughness,
-            }
+            roughnessMap: pictureRoughness,
+          }
           : {
-              roughness: 0.1,
-            }),
+            roughness: 1,
+          }),
         emissive: emissiveColor,
         emissiveIntensity: 0,
       }),
@@ -167,7 +214,8 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
       return;
     }
 
-    const emissiveIntensity = highlighted ? 0.22 : 0;
+    // Only apply hover effect to cover and back cover
+    const emissiveIntensity = (highlighted && (number === 0 || number === pages.length - 1)) ? 0.22 : 0;
     skinnedMeshRef.current.material[4].emissiveIntensity =
       skinnedMeshRef.current.material[5].emissiveIntensity = MathUtils.lerp(
         skinnedMeshRef.current.material[4].emissiveIntensity,
