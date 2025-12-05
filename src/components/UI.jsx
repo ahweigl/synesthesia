@@ -156,7 +156,7 @@ export const UI = () => {
             </button>
             {/* Page 2 */}
             <button
-              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${2 === page
+              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${(page === 2 || page === 3)
                 ? "bg-black/85 text-white"
                 : "bg-[#faf8f3]/80 text-black/80 hover:bg-[#faf8f3]/90 backdrop-blur-sm"
                 }`}
@@ -167,7 +167,7 @@ export const UI = () => {
             </button>
             {/* Page 4 */}
             <button
-              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${4 === page
+              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${(page === 4 || page === 5)
                 ? "bg-black/85 text-white"
                 : "bg-[#faf8f3]/80 text-black/80 hover:bg-[#faf8f3]/90 backdrop-blur-sm"
                 }`}
@@ -178,7 +178,7 @@ export const UI = () => {
             </button>
             {/* Page 6 */}
             <button
-              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${6 === page
+              className={`grainy-button font-garamond border-black/30 hover:border-black/80 transition-all duration-300 px-5 py-2.5 rounded-full text-base normal-case shrink-0 border relative ${(page === 6 || page === 7)
                 ? "bg-black/85 text-white"
                 : "bg-[#faf8f3]/80 text-black/80 hover:bg-[#faf8f3]/90 backdrop-blur-sm"
                 }`}
